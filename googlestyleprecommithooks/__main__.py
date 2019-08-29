@@ -8,7 +8,7 @@ import os.path
 import click
 import fnmatch
 import shlex
-from subprocess import run, PIPE
+from subprocess import run
 
 
 @click.group()
@@ -18,7 +18,8 @@ def main():
 
 
 @main.command()
-def java():
+@click.argument("files", nargs=-1)
+def java(files):
     """Format all changed java files by Google Java Format"""
     CACHE_DIR = ".cache"
     FORMATTER_VERSION = "1.7"
@@ -55,19 +56,13 @@ def java():
 
     click.echo("Checking changed files ...")
 
-    changes = run(
-        "git diff --cached --name-only --diff-filter=ACMR",
-        shell=True,
-        stdout=PIPE,
-    )
-
     changed_files = []
-    for file_path in changes.stdout.decode().splitlines():
-        file_path = file_path.strip()
-        if not fnmatch.fnmatch(file_path, "*.java"):
+    for afile in files:
+        afile = afile.strip()
+        if not fnmatch.fnmatch(afile, "*.java"):
             continue
 
-        changed_files.append(shlex.quote(file_path))
+        changed_files.append(shlex.quote(afile))
 
     if len(changed_files) > 0:
         click.echo("%d files need to be parsed:" % len(changed_files))
