@@ -18,13 +18,34 @@ A series pre-commit hooks that support format source by google style
 Usage
 ---------
 
+Environment
+~~~~~~~~~~~~~~~
+
+Before using these pre-commit hooks, you must ensure there have these components
+installed:
+
+* Python 3.5+
+* pre-commit
+* JRE 1.8+
+* wget
+* google-java-format global installed  (optional)
+
+google-java-format will be download and installed under project's '.cache'
+directory if google-java-format not been detected in global environment or under
+'.cache' directory.
+
+Configuration
+~~~~~~~~~~~~~~~
+
+Added these configs into .pre-commit-config.yaml under your project's root:
+
 ::
 
     repos:
     - repo: https://github.com/starofrainnight/google-style-pre-commit-hooks
-      sha: b7e9e7fcba4a5aea463e72fe9964c14877bd8130
-        hooks:
-        - id: google-java-style
+      rev: master
+      hooks:
+      - id: google-java-style
 
 Credits
 ---------
