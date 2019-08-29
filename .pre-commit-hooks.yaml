@@ -1,5 +1,5 @@
 - id: google-java-style
-  name: Google Java Code Style for Java
+  name: Google Code Style for Java
   description: Formats code in Google's Java codestyle.
   entry: google-style-pre-commit-hooks java
   language: python
