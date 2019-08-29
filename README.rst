@@ -25,10 +25,11 @@ Before using these pre-commit hooks, you must ensure there have these components
 installed:
 
 * Python 3.5+
-* pre-commit
 * JRE 1.8+
 * wget
 * google-java-format global installed  (optional)
+* pre-commit (through pip install)
+* pre-commit installed on your project's local repository
 
 google-java-format will be download and installed under project's '.cache'
 directory if google-java-format not been detected in global environment or under
